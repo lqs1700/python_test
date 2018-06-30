@@ -1,0 +1,30 @@
+
+js中加入
+
+$.ajaxSetup({
+    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+});
+
+例：
+<script>
+
+$.ajaxSetup({
+  data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+});
+
+function select_drug() {
+  var drug=document.forms[0].drug;
+  var drugs="";
+  var i;
+  for (i=0;i<drug.length;i++) {
+  if (drug[i].checked)
+    {
+    drugs=drugs + drug[i].value + " ";
+    }
+  }
+
+  $.post('{% url "exam2014" %}', {'drugs': drugs}, function(ret){
+      $('#result').html(ret);
+  })
+}
+</script>
