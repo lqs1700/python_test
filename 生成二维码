@@ -1,0 +1,23 @@
+#views 代码
+      from django.http import HttpResponse
+      import qrcode
+      from django.utils.six import BytesIO
+
+
+      def generate_qrcode(request):
+          data = 'https://www.liuqingsong.xin/dfqc_website/public/index.php'
+          img = qrcode.make(data)
+          buf = BytesIO()
+          img.save(buf)
+          image_stream = buf.getvalue()
+
+          response = HttpResponse(image_stream, content_type="image/png")
+          return response
+    
+#urls.py代码
+    from django.urls import path
+    from testcode import views as test_views
+
+    urlpatterns = [
+        path('myqrcode', test_views.generate_qrcode)
+    ]
