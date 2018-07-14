@@ -1,0 +1,9 @@
+1.给图片加文字
+
+# -*- coding:utf-8
+from PIL import Image,ImageDraw,ImageFont
+ttfont = ImageFont.truetype("C:\Windows\Fonts\微软雅黑\msyh.ttc")
+im = Image.open('E:\img\qqicon.jpg')
+draw = ImageDraw.Draw(im)
+draw.text((160,10),u'刘青松', fill=(0,0,0),font=ttfont)
+im.show()
